@@ -1,0 +1,9 @@
+<%- include ("layouts/header") %>
+
+
+<form method="POST" action="/change-profile-picture" enctype="multipart/form-data" id="form-change-profile-picture">
+    <input type="file" id="input-file-change-profile-picture"  accept="image/*" name="image" required >
+    <input type="submit" class="btn btn-primary" value="Change">
+</form>
+
+<%- include ("layouts/footer") %>

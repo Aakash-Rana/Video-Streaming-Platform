@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>
+            Video Streaming
+        </title>
+        <link rel="stylesheet" href="/public/vendor/bootstrap/css/bootstrap.min.css">\
+        <link rel="stylesheet" href="/public/css/blog-post.css">
+        <link rel="stylesheet" href="/public/css/modern-business.css">
+        <link rel="stylesheet" href="/public/css/simple-sidebar.css">
+        <link rel="stylesheet" href="/public/font-awesome/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        
+        <%
+	months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	baseURL = "http://localhost:3000/";
+%>
+
+<script type="text/javascript">
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	var baseURL = "http://localhost:3000/";
+</script>
+
+
+        <nav class="navabr navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a href="/" class="navbar-brand">
+                Video Streaming</a>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                            <%if (typeof isLogin !== "undefined" && isLogin) {  %>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/upload">Upload Video</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/settings">Settings</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/change-pic">Change Profile Picture</a>
+                                </li>
+
+                                
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                        <%}else{ %>
+
+                            <li class="nav-item">
+                                
+                                <a href="/login" class="nav-link">
+                                Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                
+                                <a href="/signup" class="nav-link">
+                                Signup
+                                </a>
+                            </li>
+                        <% } %>
+                         
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    </body>
+</html>

@@ -1,0 +1,72 @@
+
+<div id="comments">
+	<%
+		video.comments = video.comments.reverse();
+		video.comments.forEach(function (comment) {
+	%>
+
+		<div class="media mb-4">
+			<img class="d-flex mr-3 comment-img" src= "../../<%= comment.user.image %>" height="100" width="100" onerror="this.src = 'http://placehold.it/100x100'">
+
+			<div class="media-body">
+				<h5 class="mt-0"><%= comment.user.name %></h5>
+				<%= comment.comment %>
+			</div>
+		</div>
+
+		<% }) %>	
+	</div>
+		
+		<% if (typeof isLogin !== "undefined" && isLogin) { %>
+			<div class="card my-4">
+				<h5 class="card-header">Leave a Comment:</h5>
+				<div class="card-body">
+					<form onsubmit="return postComment(this);">
+						<div class="form-group">
+							<textarea class="form-control" name="comment" rows="3"></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
+				</div>
+				<script type="text/javascript">
+					function postComment(form) {
+						var ajax = new XMLHttpRequest();
+						ajax.open("POST", "/do-comment", true);
+						ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				
+						ajax.onreadystatechange = function () {
+							if (this.readyState == 4 && this.status == 200) {
+								var response = JSON.parse(this.responseText);
+				
+								var html = "";
+								html += '<div class="media mb-4">';
+									html += '<img class="d-flex mr-3 comment-img" height="100" width="100" src="../../' + response.user.image + '" onerror="this.src = \'http://placehold.it/100x100\'">';
+									html += '<div class="media-body">';
+										html += '<h5 class="mt-0">' + response.user.name + '</h5>';
+										html += form.comment.value;
+									html += '</div>';
+								html += '</div>';
+				
+								document.getElementById("comments").innerHTML = html + document.getElementById("comments").innerHTML;
+								form.comment.value = "";
+							}
+						};
+				
+						var videoId = document.getElementById("videoId").value;
+						ajax.send("comment=" + form.comment.value + "&videoId=" + videoId);
+				
+						return false;
+					}
+				</script>
+		<% } %>
+
+
+
+
+
+
+
+
+
+
